@@ -1,1 +1,2 @@
-import '/imports/api/users/server/publications';
+import '/imports/api/restaurantes/restaurantes';
+import '/imports/api/restaurantes/server/publications';
