@@ -1,0 +1,8 @@
+<template name="homePage">
+	<b> User List </b> <br>
+	{{#if Template.subscriptionsReady}}
+		{{> usersList}}
+	{{else}}
+		Loading...
+	{{/if}}
+</template>
