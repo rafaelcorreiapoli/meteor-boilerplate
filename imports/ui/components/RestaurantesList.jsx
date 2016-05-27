@@ -23,9 +23,8 @@ export default class RestaurantesList extends React.Component {
          displaySelectAll={false}
          adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
+            <TableHeaderColumn>Nome</TableHeaderColumn>
+            <TableHeaderColumn>CNPJ</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody

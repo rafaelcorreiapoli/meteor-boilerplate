@@ -22,3 +22,6 @@ accounts-password
 react-meteor-data
 static-html
 fourseven:scss
+mdg:validated-method
+aldeed:collection2
+check

@@ -45,6 +45,9 @@ export default class App extends Component {
 			case '/requests':
 				title = 'Requests';
 				break;
+			case '/restaurantes/add':
+				title = 'Adicionar Restaurante';
+				break;	
 			default:
 				title = 'Unknown';
 		}
@@ -65,6 +68,11 @@ export default class App extends Component {
 		return (
 			<MuiThemeProvider muiTheme={getMuiTheme()	}>
 				<div>
+				  <AppBar
+				    title={this.state.title}
+				    iconClassNameRight="muidocs-icon-navigation-expand-more"
+				    onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
+				  />		
 	        <Drawer
 	        	open={this.state.open}
 	        	docked={false}
@@ -82,11 +90,6 @@ export default class App extends Component {
 		          </MenuItem>
 	          </Link>
 	        </Drawer>
-				  <AppBar
-				    title={this.state.title}
-				    iconClassNameRight="muidocs-icon-navigation-expand-more"
-				    onLeftIconButtonTouchTap={this.handleToggle.bind(this)}
-				  />
 				  <div style={styles.content}>
 						{this.props.children}
 					</div>
