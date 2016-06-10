@@ -1,19 +1,31 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const RestauranteSchema = new SimpleSchema({
-	nome: {
+	name: {
 		type: String
 	},
-	cnpj: {
+	category: {
 		type: String
+	},
+	rating: {
+		type: Number,
+		decimal: true
 	},
 	lat: {
 		type: Number,
-		decimal: true
+		decimal: true,
+		optional: true
 	},
 	lng: {
 		type: Number,
-		decimal: true
+		decimal: true,
+		optional: true
+	},
+	minTime: {
+		type: Number
+	},
+	maxTime: {
+		type: Number
 	},
 	logoUrl: {
 		type: String

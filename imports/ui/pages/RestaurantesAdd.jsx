@@ -51,6 +51,10 @@ const RestaurantesAdd = React.createClass({
   submitForm(data) {
   	data.lat = Number(data.lat);
   	data.lng = Number(data.lng);
+    data.rating = Number(data.rating);
+    data.minTime = Number(data.minTime);
+    data.maxTime = Number(data.maxTime);
+    console.log(data);
     insert.call(data, (err, res) => {
       let message;
       if (err) {
@@ -91,34 +95,58 @@ const RestaurantesAdd = React.createClass({
   	      >
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="nome"
+  	          name="name"
   	          required
   	          hintText="MC Donalds"
-  	          floatingLabelText="Name"
+  	          floatingLabelText="Nome"
   	        />
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="cnpj"
+  	          name="category"
   	          required
-  	          hintText="66.802.357/0001-00"
-  	          floatingLabelText="CNPJ"
+  	          hintText="Pizzaria"
+  	          floatingLabelText="Categoria"
   	        />
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="lat"
+  	          name="rating"
   	          validations="isNumeric"
   	          validationError={numericError}
-  	          hintText="-23.628482"
-  	          floatingLabelText="Latitude"
+  	          hintText="4.5"
+  	          floatingLabelText="Rating"
   	        />
+            <FormsyText
+              style={inputStyle}
+              name="lat"
+              validations="isNumeric"
+              validationError={numericError}
+              hintText="46.5"
+              floatingLabelText="Latitude"
+            />
+            <FormsyText
+              style={inputStyle}
+              name="lng"
+              validations="isNumeric"
+              validationError={numericError}
+              hintText="23.5"
+              floatingLabelText="Longitude"
+            />                        
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="lng"
+  	          name="minTime"
   	          validations="isNumeric"
   	          validationError={numericError}
-  	          hintText="-46.616636"
-  	          floatingLabelText="Longitude"
+  	          hintText="45"
+  	          floatingLabelText="Min Time"
   	        />
+            <FormsyText
+              style={inputStyle}
+              name="maxTime"
+              validations="isNumeric"
+              validationError={numericError}
+              hintText="60"
+              floatingLabelText="Max Time"
+            />            
             <FormsyText
               style={inputStyle}
               name="logoUrl"
