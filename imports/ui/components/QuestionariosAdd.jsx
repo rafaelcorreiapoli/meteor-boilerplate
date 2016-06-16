@@ -1,4 +1,4 @@
-import { insert } from '/imports/api/restaurantes/methods';
+import { insert } from '/imports/api/questionarios/methods';
 
 import React from 'react';
 import Formsy from 'formsy-react';
@@ -9,22 +9,26 @@ import Snackbar from 'material-ui/Snackbar';
 import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
     FormsySelect, FormsyText, FormsyTime, FormsyToggle } from 'formsy-material-ui/lib';
 
-const RestaurantesAdd = React.createClass({
+import ConstruirPerguntas from './ConstruirPerguntas';
+
+const QuestionariosAdd = React.createClass({
   getInitialState() {
     return {
       canSubmit: false,
       snackOpen: false,
-      snackMessage: ''
+      snackMessage: '',
+      perguntas: []
     };
   },
 	errorMessages: {
     numericError: 'Por favor coloque um número válido',
-    urlError: 'Por favor coloque uma URL válida'
+    urlError: 'Por favor coloque uma URL válida',
+    isDateError: 'Por favor coloque uma data válida'
   },
 
   styles: {
     paperStyle: {
-      width: 400,
+      width: 800,
       margin: 'auto',
       padding: 20,
     },
@@ -49,15 +53,16 @@ const RestaurantesAdd = React.createClass({
   },
 
   submitForm(data) {
-  	data.lat = Number(data.lat);
-  	data.lng = Number(data.lng);
-    data.nota = Number(data.nota);
-    insert.call(data, (err, res) => {
+    data.tempoMedio = Number(data.tempoMedio);
+    data.restauranteId = this.props.restauranteId;
+    const {perguntas } = this.state;
+    
+    insert.call({questionario: data, perguntas}, (err, res) => {
       let message;
       if (err) {
         message = `Algo errado aconteceu: ${err.toString()}`;
       } else {
-        message = 'Restaurante criado';
+        message = 'Promoção criada';
       }
 
       this.setState({
@@ -77,13 +82,20 @@ const RestaurantesAdd = React.createClass({
     });
   },
 
+  handlePerguntasChange(perguntas) {
+    console.log(perguntas);
+    this.setState({
+      perguntas
+    });
+  },
+
   render() {
     let {paperStyle, switchStyle, submitStyle, inputStyle } = this.styles;
-    let { wordsError, numericError, urlError } = this.errorMessages;
+    let { wordsError, numericError, urlError, isDateError } = this.errorMessages;
     return (
       <div>
   	    <Paper style={paperStyle}>
-  	    	<h3>Novo Restaurante</h3>
+  	    	<h3>Novo Questionário</h3>
   	      <Formsy.Form
   	        onValid={this.enableButton}
   	        onInvalid={this.disableButton}
@@ -92,56 +104,26 @@ const RestaurantesAdd = React.createClass({
   	      >
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="name"
+  	          name="nome"
   	          required
-  	          hintText="MC Donalds"
+  	          hintText="Questionário para pesquisa de satisfação"
   	          floatingLabelText="Nome"
   	        />
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="category"
+  	          name="tempoMedio"
   	          required
-  	          hintText="Pizzaria"
-  	          floatingLabelText="Categoria"
+  	          hintText="5"
+  	          floatingLabelText="Tempo médio (min)"
   	        />
-  	        <FormsyText
-  	        	style={inputStyle}
-  	          name="nota"
-  	          validations="isNumeric"
-  	          validationError={numericError}
-  	          hintText="4.5"
-  	          floatingLabelText="Nota"
-  	        />
-            <FormsyText
-              style={inputStyle}
-              name="lat"
-              validations="isNumeric"
-              validationError={numericError}
-              hintText="46.5"
-              floatingLabelText="Latitude"
+
+            <ConstruirPerguntas onChange={this.handlePerguntasChange} />
+            <br />
+            <RaisedButton
+              type="submit"
+              label="Submit"
+              disabled={!this.state.canSubmit}
             />
-            <FormsyText
-              style={inputStyle}
-              name="lng"
-              validations="isNumeric"
-              validationError={numericError}
-              hintText="23.5"
-              floatingLabelText="Longitude"
-            />         
-            <FormsyText
-              style={inputStyle}
-              name="logoUrl"
-              validations="isUrl"
-              validationError={urlError}
-              hintText="http://..."
-              floatingLabelText="Logotipo"
-            />
-  	        <RaisedButton
-  	          style={submitStyle}
-  	          type="submit"
-  	          label="Submit"
-  	          disabled={!this.state.canSubmit}
-  	        />
   	      </Formsy.Form>
   	    </Paper>
         <Snackbar
@@ -155,4 +137,4 @@ const RestaurantesAdd = React.createClass({
   }
 });
 
-export default RestaurantesAdd;
+export default QuestionariosAdd;

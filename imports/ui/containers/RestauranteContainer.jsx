@@ -10,7 +10,8 @@ export default createContainer(({ params: { id } }) => {
   const restaurante = Restaurantes.findOne(id);
   return {
     loading,
-    restaurante
+    restaurante,
+    restauranteId: id
   };
 }, RestaurantePage);
 

@@ -1,4 +1,4 @@
-import { insert } from '/imports/api/restaurantes/methods';
+import { insert } from '/imports/api/promocoes/methods';
 
 import React from 'react';
 import Formsy from 'formsy-react';
@@ -9,7 +9,7 @@ import Snackbar from 'material-ui/Snackbar';
 import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
     FormsySelect, FormsyText, FormsyTime, FormsyToggle } from 'formsy-material-ui/lib';
 
-const RestaurantesAdd = React.createClass({
+const PromocoesAdd = React.createClass({
   getInitialState() {
     return {
       canSubmit: false,
@@ -19,7 +19,8 @@ const RestaurantesAdd = React.createClass({
   },
 	errorMessages: {
     numericError: 'Por favor coloque um número válido',
-    urlError: 'Por favor coloque uma URL válida'
+    urlError: 'Por favor coloque uma URL válida',
+    isDateError: 'Por favor coloque uma data válida'
   },
 
   styles: {
@@ -49,15 +50,14 @@ const RestaurantesAdd = React.createClass({
   },
 
   submitForm(data) {
-  	data.lat = Number(data.lat);
-  	data.lng = Number(data.lng);
-    data.nota = Number(data.nota);
+    console.log(this);
+    data.restauranteId = this.props.restauranteId;
     insert.call(data, (err, res) => {
       let message;
       if (err) {
         message = `Algo errado aconteceu: ${err.toString()}`;
       } else {
-        message = 'Restaurante criado';
+        message = 'Promoção criada';
       }
 
       this.setState({
@@ -79,11 +79,11 @@ const RestaurantesAdd = React.createClass({
 
   render() {
     let {paperStyle, switchStyle, submitStyle, inputStyle } = this.styles;
-    let { wordsError, numericError, urlError } = this.errorMessages;
+    let { wordsError, numericError, urlError, isDateError } = this.errorMessages;
     return (
       <div>
   	    <Paper style={paperStyle}>
-  	    	<h3>Novo Restaurante</h3>
+  	    	<h3>Nova Promoção</h3>
   	      <Formsy.Form
   	        onValid={this.enableButton}
   	        onInvalid={this.disableButton}
@@ -92,49 +92,33 @@ const RestaurantesAdd = React.createClass({
   	      >
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="name"
+  	          name="nome"
   	          required
-  	          hintText="MC Donalds"
+  	          hintText="Big mac + Batatinha"
   	          floatingLabelText="Nome"
   	        />
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="category"
+  	          name="descricao"
   	          required
-  	          hintText="Pizzaria"
-  	          floatingLabelText="Categoria"
+  	          hintText="Uma breve descrição"
+  	          floatingLabelText="Descrição"
   	        />
-  	        <FormsyText
+  	        <FormsyDate
   	        	style={inputStyle}
-  	          name="nota"
-  	          validations="isNumeric"
-  	          validationError={numericError}
-  	          hintText="4.5"
-  	          floatingLabelText="Nota"
+  	          name="validoAte"
+              required
+  	          hintText="13/06/2016"
+  	          floatingLabelText="Valido Até"
   	        />
             <FormsyText
               style={inputStyle}
-              name="lat"
-              validations="isNumeric"
-              validationError={numericError}
-              hintText="46.5"
-              floatingLabelText="Latitude"
-            />
-            <FormsyText
-              style={inputStyle}
-              name="lng"
-              validations="isNumeric"
-              validationError={numericError}
-              hintText="23.5"
-              floatingLabelText="Longitude"
-            />         
-            <FormsyText
-              style={inputStyle}
-              name="logoUrl"
+              name="imagemUrl"
               validations="isUrl"
               validationError={urlError}
+              required
               hintText="http://..."
-              floatingLabelText="Logotipo"
+              floatingLabelText="Imagem"
             />
   	        <RaisedButton
   	          style={submitStyle}
@@ -155,4 +139,4 @@ const RestaurantesAdd = React.createClass({
   }
 });
 
-export default RestaurantesAdd;
+export default PromocoesAdd;

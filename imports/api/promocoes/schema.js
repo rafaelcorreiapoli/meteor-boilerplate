@@ -4,6 +4,10 @@ export const PromocaoSchema = new SimpleSchema({
 	restauranteId: {
 		type: String
 	},
+	questionarioId: {
+		type: String,
+		optional: true
+	},
 	nome: {
 		type: String
 	},
@@ -11,6 +15,9 @@ export const PromocaoSchema = new SimpleSchema({
 		type: Date
 	},
 	descricao: {
+		type: String
+	},
+	imagemUrl: {
 		type: String
 	}
 });

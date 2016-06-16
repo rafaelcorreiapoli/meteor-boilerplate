@@ -1,13 +1,13 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const RestauranteSchema = new SimpleSchema({
-	name: {
+	nome: {
 		type: String
 	},
-	category: {
+	categoria: {
 		type: String
 	},
-	rating: {
+	nota: {
 		type: Number,
 		decimal: true
 	},
@@ -20,12 +20,6 @@ export const RestauranteSchema = new SimpleSchema({
 		type: Number,
 		decimal: true,
 		optional: true
-	},
-	minTime: {
-		type: Number
-	},
-	maxTime: {
-		type: Number
 	},
 	logoUrl: {
 		type: String

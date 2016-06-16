@@ -1,18 +1,16 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import 'flexboxgrid';
-console.log('aqui');
+import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 
 let styles = {
-	paperStyle: {
-		padding: 20
-	},
-	mapContainer: {
-		height: 500,
-		width: 500
-	}
+  paperStyle: {
+    padding: 20,
+    marginBottom: 20
+  },
+  mapContainer: {
+    height: 500,
+    width: 500
+  }
 };
 
 export default class RestauranteShow extends React.Component {
@@ -21,11 +19,10 @@ export default class RestauranteShow extends React.Component {
   }
 
   render() {
-    let { nome, cnpj, lat, lng, logoUrl } = this.props;
-
-    console.log(lat);
+    let { _id, nome, cnpj, lat, lng, logoUrl } = this.props;
 
     return (
+      <div>
       <Paper style={styles.paperStyle}>
       	<img src={logoUrl} />
       	<h1>Nome: {nome}</h1>
@@ -43,7 +40,7 @@ export default class RestauranteShow extends React.Component {
 	        }
 	        googleMapElement={
 	          <GoogleMap
-	            ref={(map) => (this._googleMapComponent = map) && console.log(map.getZoom())}
+	            ref={map => {this._googleMapComponent = map; }}
 	            defaultZoom={15}
 	            defaultCenter={{ lat: Number(lat), lng: Number(lng)}}
 	          >
@@ -54,15 +51,16 @@ export default class RestauranteShow extends React.Component {
 		        }
 		      />
       </Paper>
+			</div>
     );
   }
 }
 
 RestauranteShow.propTypes = {
+	_id: React.PropTypes.string,
   nome: React.PropTypes.string,
   cnpj: React.PropTypes.string,
   lat: React.PropTypes.number,
   lng: React.PropTypes.number,
   logoUrl: React.PropTypes.string
 };
-
