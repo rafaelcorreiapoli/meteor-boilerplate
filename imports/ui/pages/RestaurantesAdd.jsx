@@ -92,14 +92,14 @@ const RestaurantesAdd = React.createClass({
   	      >
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="name"
+  	          name="nome"
   	          required
   	          hintText="MC Donalds"
   	          floatingLabelText="Nome"
   	        />
   	        <FormsyText
   	        	style={inputStyle}
-  	          name="category"
+  	          name="categoria"
   	          required
   	          hintText="Pizzaria"
   	          floatingLabelText="Categoria"
