@@ -5,7 +5,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 
 export default createContainer(({ params: { id } }) => {
-  const restauranteHandle = Meteor.subscribe('restaurante.single', { id });
+  const restauranteHandle = Meteor.subscribe('restaurantes.single', { id });
   const loading = !restauranteHandle.ready();
   const restaurante = Restaurantes.findOne(id);
   return {

@@ -19,6 +19,9 @@ export const PromocaoSchema = new SimpleSchema({
 	},
 	imagemUrl: {
 		type: String
+	},
+	ativa: {
+		type: Boolean
 	}
 });
 

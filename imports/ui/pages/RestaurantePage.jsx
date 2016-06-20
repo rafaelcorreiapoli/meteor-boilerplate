@@ -4,6 +4,8 @@ import PromocoesContainer from '../containers/PromocoesContainer';
 import QuestionariosContainer from '../containers/QuestionariosContainer';
 import PromocoesAdd from '../components/PromocoesAdd';
 import QuestionariosAdd from '../components/QuestionariosAdd';
+import CuponsContainer from '../containers/CuponsContainer';
+import GerarCupom from '../components/GerarCupom';
 
 export default class RestaurantePage extends React.Component {
   constructor(props) {
@@ -22,6 +24,10 @@ export default class RestaurantePage extends React.Component {
         <PromocoesContainer restauranteId={restauranteId} />
         <h2>Questionários</h2>
         <QuestionariosContainer restauranteId={restauranteId} />
+        <h2>Cupons</h2>
+        <CuponsContainer restauranteId={restauranteId} />
+        <h2> Gerar Cupom </h2>
+        <GerarCupom restauranteId={restauranteId} />
       </div>
     );
   }

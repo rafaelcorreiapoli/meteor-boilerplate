@@ -7,7 +7,7 @@ Meteor.publish('restaurantes', function() {
 });
 
 
-Meteor.publish('restaurante.single', function({ id }) {
+Meteor.publish('restaurantes.single', function({ id }) {
 	check(id, String);
 	return Restaurantes.find({
 		_id: id

@@ -7,12 +7,21 @@ export const RespostaSchema = new SimpleSchema({
 	perguntaId: {
 		type: String
 	},
+	promocaoId: {
+		type: String
+	},
+	userId: {
+		type: String
+	},
 	tipo: {
 		type: Number
 	},
 	conteudo: {
 		type: Object,
 		blackbox: true
+	},
+	data: {
+		type: Date
 	}
 });
 

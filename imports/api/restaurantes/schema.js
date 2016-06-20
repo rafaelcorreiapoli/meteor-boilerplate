@@ -23,6 +23,9 @@ export const RestauranteSchema = new SimpleSchema({
 	},
 	logoUrl: {
 		type: String
+	},
+	questionarioId: {
+		type: String
 	}
 });
 

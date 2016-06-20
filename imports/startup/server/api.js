@@ -18,3 +18,7 @@ import '/imports/api/questionarios/methods';
 import '/imports/api/respostas';
 import '/imports/api/respostas/server/publications';
 import '/imports/api/respostas/methods';
+
+import '/imports/api/cupons';
+import '/imports/api/cupons/server/publications';
+import '/imports/api/cupons/methods';

@@ -67,26 +67,9 @@ Meteor.publishComposite('promocoes.single', function({ id }) {
   check(id, String);
   return {
     find() {
-      // Find top ten highest scoring posts
       return Promocoes.find({
         _id: id
       });
     },
-    children: [{
-      find(promocao) {
-        const { questionarioId } = promocao;
-        return Questionarios.find({
-          _id: questionarioId
-        });
-      },
-      children: [{
-        find(questionario) {
-          const { _id } = questionario;
-          return Perguntas.find({
-            questionarioId: _id
-          });
-        }
-      }]
-    }]
   };
 });

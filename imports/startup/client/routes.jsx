@@ -13,6 +13,7 @@ import RestaurantesContainer from '/imports/ui/containers/RestaurantesContainer'
 import RestaurantesAdd from '/imports/ui/pages/RestaurantesAdd';
 import RestauranteContainer from '/imports/ui/containers/RestauranteContainer';
 import PromocaoContainer from '/imports/ui/containers/PromocaoContainer';
+import CupomContainer from '/imports/ui/containers/CupomContainer';
 
 function requireAuth(nextState, replace) {
   if (!Meteor.userId()) {
@@ -34,6 +35,7 @@ export default renderRoutes = () => (
       <Route path="/restaurantes/add" component={ RestaurantesAdd } onEnter={requireAuth} />
       <Route path="restaurante/:id" component = {RestauranteContainer} onEnter={requireAuth} />
       <Route path="promocao/:id" component = {PromocaoContainer} onEnter={requireAuth} />
+      <Route path="cupom/:id" component = {CupomContainer} onEnter={requireAuth} />
     </Route>
   </Router>
 );
